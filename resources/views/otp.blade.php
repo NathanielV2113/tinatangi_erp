@@ -8,7 +8,7 @@
     <style>
       body {
         background: #ffe2b6;
-        background: url('image/bg5.jpg') no-repeat center center fixed;
+        background: url('./images/bg5.jpg') no-repeat center center fixed;
         display: flex;
         justify-content: center;
         align-items: center;
