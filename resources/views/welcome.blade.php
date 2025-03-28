@@ -4,7 +4,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    crossorigin="anonymous"
+  />
   <title>Tinatangi</title>
   <style>
     /* Full-page background */
@@ -17,7 +21,7 @@
       position: relative;
     }
 
-    /* Smaller and centered card container with reduced max-width */
+    /* Compact and centered card container */
     .card-container {
       position: absolute;
       top: 50%;
@@ -25,10 +29,11 @@
       transform: translate(-50%, -50%);
       z-index: 1;
       width: 90%;
-      max-width: 600px;
+      max-width: 700px;
+      margin-right: 30px;
     }
 
-    /* Left image inside the card */
+    /* Left image styling */
     .column-fit {
       height: 100%;
       object-fit: cover;
@@ -36,17 +41,17 @@
       border-bottom-left-radius: 1rem;
     }
 
-    /* Logo styling */
-    .custom-image {
-      width: 200px;
-      height: auto;
-      display: block;
-      margin: 5px auto; /* Reduced margin */
+    /* Fix the left image column width */
+    @media (min-width: 768px) {
+      .image-column {
+        flex: 0 0 150px !important;
+        max-width: 150px !important;
+      }
     }
 
     /* Card styling */
     .card {
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: #fff2e1;
       border-radius: 1rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
@@ -65,12 +70,12 @@
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     }
 
-    /* Styling for checkbox container */
+    /* Checkbox container styling */
     .checkbox-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 5px; /* Reduced margin */
+      margin-top: 5px;
     }
 
     .form-check-label {
@@ -82,21 +87,22 @@
     .error-message {
       color: red;
       font-size: 14px;
-      margin-top: 3px; /* Smaller margin */
+      margin-top: 3px;
     }
 
-    /* Adjusted vertical margins and paddings for a more compact form */
+    /* Adjusted margins and paddings for compact layout */
+    /* Top: 1rem, Right: 0, Bottom: 1rem, Left: 5rem; plus a negative right margin to reduce space further */
     .card-body {
-      padding: 1rem; /* Reduced padding */
+      padding: 1rem 0 1rem 5rem;
+      margin-right: -1rem;
     }
 
     h5 {
-      margin-top: 0;
-      margin-bottom: 0.5rem; /* Reduced heading margin */
+      margin-bottom: 0.5rem;
     }
 
     .form-group {
-      margin-bottom: 0.5rem; /* Reduced margin between form groups */
+      margin-bottom: 0.5rem;
     }
 
     .login-btn {
@@ -108,50 +114,39 @@
 </head>
 
 <body>
-  <!-- Foreground Content -->
   <div class="card-container">
     <div class="card">
-      <div class="row g-0">
-        <!-- Left image -->
-        <div class="col-md-6 col-lg-5 d-none d-md-block">
+      <div class="row no-gutters">
+        <!-- Left image column (retained but treated as independent) -->
+        <div class="col-md-5 image-column d-none d-md-block">
           <img src="./images/tinangi.jpg" alt="Login form" class="img-fluid rounded-start column-fit">
         </div>
-        <!-- Login form -->
-        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+        <!-- Right column with centered content -->
+        <div class="col-md-7 d-flex align-items-center justify-content-center">
           <div class="card-body text-black">
             <form id="loginForm" onsubmit="return validateAndRedirect()">
-              <!-- Logo -->
-              <div class="text-center mb-1">
-                <img src="./images/tinatangilogo.png" class="img-fluid custom-image" alt="Logo">
-              </div>
               <h5 class="fw-normal text-center">Sign into your Account</h5>
               <!-- Email input -->
               <div class="form-group">
-                <label for="emailInput" class="form-label">Email Address</label>
-                <input type="text" id="emailInput" class="form-control" pattern="[a-zA-Z0-9.@]+" title="Only letters, numbers, periods, and '@' are allowed">
+                <label for="emailInput" class="d-block">Email Address</label>
+                <input type="text" id="emailInput" class="form-control" pattern="[a-zA-Z0-9.@]+"
+                  title="Only letters, numbers, periods, and '@' are allowed">
                 <div id="emailError" class="error-message" style="display: none;">Email is required.</div>
               </div>
               <!-- Password input -->
               <div class="form-group">
-                <label for="passwordInput" class="form-label">Password</label>
+                <label for="passwordInput" class="d-block">Password</label>
                 <input type="password" id="passwordInput" class="form-control">
                 <div id="passwordError" class="error-message" style="display: none;">Password is required.</div>
               </div>
-              <!-- Checkboxes (Remember Me and Show Password) -->
+              <!-- Checkbox -->
               <div class="checkbox-container">
                 <div class="form-check">
                   <input type="checkbox" class="form-check-input" id="rememberMeCheckbox">
                   <label class="form-check-label" for="rememberMeCheckbox">Remember Me</label>
                 </div>
-                <!-- Show Password (currently commented out) -->
-                <!--
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="showPasswordCheckbox" onclick="togglePassword()">
-                  <label class="form-check-label" for="showPasswordCheckbox">Show Password</label>
-                </div>
-                -->
               </div>
-              <!-- Login Button -->
+              <!-- Login button -->
               <div class="pt-1">
                 <button class="btn btn-dark btn-lg btn-block login-btn" type="submit">Login</button>
               </div>
@@ -163,17 +158,6 @@
   </div>
 
   <script>
-    // Toggle the visibility of the password (if enabled)
-    function togglePassword() {
-      const passwordInput = document.getElementById('passwordInput');
-      const showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
-      if (showPasswordCheckbox.checked) {
-        passwordInput.type = 'text';
-      } else {
-        passwordInput.type = 'password';
-      }
-    }
-
     // Form validation and redirection function
     function validateAndRedirect() {
       let isValid = true;
@@ -193,46 +177,11 @@
       } else {
         passwordError.style.display = 'none';
       }
+      // Redirect if form is valid
       if (isValid) {
         window.location.href = "{{route('otp')}}";
       }
-      return false; // Prevent default form submission
-    }
-
-    // Remaining helper functions (checkInput, showOtpPopup, moveToNext, verifyOtp) remain unchanged...
-    function checkInput() {
-      const emailInput = document.getElementById("emailInput");
-      const notification = document.getElementById("notification");
-      const regex = /^[a-zA-Z0-9.@]*$/;
-      if (!regex.test(emailInput.value)) {
-        notification.style.display = "block";
-      } else {
-        notification.style.display = "none";
-      }
-    }
-
-    function showOtpPopup() {
-      const otpModal = new bootstrap.Modal(document.getElementById("otpModal"));
-      otpModal.show();
-    }
-
-    function moveToNext(current, nextFieldId) {
-      if (current.value.length === current.maxLength && nextFieldId) {
-        document.getElementById(nextFieldId).focus();
-      }
-    }
-
-    function verifyOtp() {
-      const otp1 = document.getElementById("otp1").value;
-      const otp2 = document.getElementById("otp2").value;
-      const otp3 = document.getElementById("otp3").value;
-      const otp4 = document.getElementById("otp4").value;
-      const otp = otp1 + otp2 + otp3 + otp4;
-      if (otp.length === 4) {
-        alert("OTP Entered: " + otp);
-      } else {
-        alert("Please enter a valid 4-digit OTP.");
-      }
+      return false; // Prevent actual form submission
     }
   </script>
 </body>
