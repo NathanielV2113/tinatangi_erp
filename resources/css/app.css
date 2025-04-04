@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -16,6 +17,8 @@
     --accent-dirtywhite: #F1E5D5;
     --accent-caramel: #C18553;
     --accent-choco: #5F3124;
+    --accent-choco-light: #895637;
+    --accent-milo: #DAB49F;
 
     --black-a:#262D34;
     --a: #f0f8ff;

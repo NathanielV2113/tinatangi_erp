@@ -33,7 +33,7 @@ class AuthController extends Controller
     }
     public function home(){
         if (session('success_message')) {Alert::success( session('success_message'));}
-        return view('home');
+        return view('admin.dashboard');
     }
 
     public function registerSave(Request $request)
@@ -96,7 +96,7 @@ class AuthController extends Controller
                     Alert::error('Your Account is Deactivated!');
                     return redirect('/');
                 }
-                return redirect()->intended(route('admin', absolute: false))->withSuccessMessage('Logged in successfully!');
+                return redirect()->intended(route('hr', absolute: false))->withSuccessMessage('Logged in successfully!');
             case 3:
                 if($authUserStatus == 6) {
                     Auth::guard('web')->logout();

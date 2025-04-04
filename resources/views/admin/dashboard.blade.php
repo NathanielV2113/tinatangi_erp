@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-</head>
-<body>
-    
-</body>
-</html>
+@extends('layouts.app')
+
+@section('title')
+Admin | Tinatangi
+@endsection
+
+@section('content')
+@section('dashboard')active
+@endsection
+
+@endsection
+
+@section('scripts')
+
+@endsection
+
+@section('styles')
+<style>
+    body {
+        background-color: var(--accent-white);
+    }
+</style>
+@endsection
