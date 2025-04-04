@@ -41,8 +41,8 @@ class AuthController extends Controller
         Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
+            'email' => 'required|email|unique:users|regex:/[a-zA-Z]/|regex:/[0-9]/|regex:/[@_.]/',
+            'password' => 'required|confirmed|min:8|max:20|string',
         ])->validate();
 
         User::create([
@@ -109,6 +109,17 @@ class AuthController extends Controller
                     return redirect('/');
                 }
                 return redirect()->intended(route('home', absolute: false))->withSuccessMessage('Logged in successfully!');
+            case 22:
+                if($authUserStatus == 22) {
+                    Auth::guard('web')->logout();
+
+                    $request->session()->invalidate();
+
+                    $request->session()->regenerateToken();
+                    Alert::error('Account not confirmed!');
+
+                    return redirect('/');
+                }
             default:
                 Auth::guard('web')->logout();
 
