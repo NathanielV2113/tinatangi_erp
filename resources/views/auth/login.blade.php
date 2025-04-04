@@ -18,7 +18,7 @@
     </div>
 
     <div style="width:50%; padding: 100px 50px 0 50px;">
-      <form class="space-y-6" action="" method="POST">
+      <form class="space-y-6" action="{{route('login.auth')}}" method="POST">
         @csrf
         @method('post')
         <div>
@@ -77,5 +77,6 @@
     background-color: var(--light_blue)
   }
 </style>
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 </html>
