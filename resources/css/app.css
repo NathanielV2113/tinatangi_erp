@@ -1,5 +1,45 @@
 @import 'tailwindcss';
 
+*{
+    margin: 0;
+    padding: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+    transition: all .2s ease;
+}
+
+:root {
+    --accent-white: #F3E9DF;
+    --accent-dirtywhite: #F1E5D5;
+    --accent-caramel: #C18553;
+    --accent-choco: #5F3124;
+
+    --black-a:#262D34;
+    --a: #f0f8ff;
+    --void_black: #1F2125;
+    --black: #1E252B;
+    --grey: #262D34;
+    --blue: #333A73;
+    --light_blue: #3E4AA8;
+    --pastel_blue: #387ADF;
+    --orange: #F3A847;
+    --light_orange: #F3A880;
+    --red: #A31F34;
+    --light_red: #A91721;
+    --green: #35CC6A;
+    --text_white: #F0f8ff;
+    --white: #F0F2F5;
+    --true_white: #ffffff;
+    --pad: #262D34;
+    --grey-to-blue-bar: #262D34;
+    --null_black: rgba(0, 0, 0, 0.3);
+    --null_void_black: rgba(0, 0, 0, 0.7);
+    --null_white:rgb(255, 255, 255, 0.6);
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';

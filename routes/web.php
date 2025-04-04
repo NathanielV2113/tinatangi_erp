@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 Route::get('/otp', function () {
-    return view('otp');
+    return view('auth.otp');
 })->name('otp');
